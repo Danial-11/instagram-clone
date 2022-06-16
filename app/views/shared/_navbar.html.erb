@@ -1,0 +1,17 @@
+<div class="navigation">
+  <div class="logo">
+    <a class="no-underline">
+      <%= link_to posts_path do %>
+        Instagram-Clone
+      <% end %>
+    </a>
+  </div>
+  <div>
+    <%= render 'shared/search' %>
+  </div>
+  <div class="navigation-icons">
+    <%= link_to 'Requests', requests_path, class: "mx-3" %>
+    <%= link_to '---', users_path , class: "far fa-user-circle" %>
+    <%= link_to '', destroy_user_session_path , class: "fas fa-sign-out-alt" %>
+  </div>
+</div>

@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -38,13 +38,13 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -59,4 +59,19 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem 'bootstrap', '~> 5.1', '>= 5.1.3'
+gem 'carrierwave', '~> 1.0'
+gem 'client_side_validations', '~> 20.0', '>= 20.0.2'
+gem 'cloudinary', '~> 1.23'
+gem 'devise', '~> 4.8', '>= 4.8.1'
+gem 'htmlbeautifier'
+gem 'jquery-rails', '~> 4.5'
+gem 'mysql2', '~> 0.5.4'
+gem 'pundit', '~> 2.2'
+gem 'sidekiq', '~> 6.4', '>= 6.4.2'
+gem 'sidekiq-cron', github: 'ondrejbartas/sidekiq-cron'
+gem 'toastr-rails', '~> 1.0', '>= 1.0.3'
+gem 'will_paginate', '~> 3.3'
+gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.2'

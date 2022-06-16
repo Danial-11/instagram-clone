@@ -1,0 +1,2 @@
+$('#comment-form-post-<%= @post.id.to_s %>').html('<%= j render 'shared/comment_list', {post: @post} %>');
+console.log('comment deleted')

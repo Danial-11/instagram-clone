@@ -18,7 +18,7 @@ class PostsController < ApplicationController
         image = params[:images]
         if image.present?
           image.each do |img|
-            @post.photos.create!(image: img)
+            @post.photos.create(image: img)
           end
         end
         redirect_to posts_path

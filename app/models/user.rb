@@ -19,4 +19,10 @@ class User < ApplicationRecord
     errors.add :password,
                'Length should be 8-70 characters and include: 1 uppercase, 1 lowercase, 1 digit and 1 special character'
   end
+
+  def follow_status(current_user)
+    return 'pending' unless current_user.following?(id)
+
+    follower_relationships.find_by(follower_id: current_user.id, following_id: id).status
+  end
 end

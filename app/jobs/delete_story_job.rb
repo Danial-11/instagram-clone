@@ -5,6 +5,6 @@ class DeleteStoryJob < ApplicationJob
   queue_as :default
 
   def perform(*_args)
-    Story.where('created_at <= ?', 10.seconds.ago).destroy_all
+    Story.where('created_at <= ?', 30.minutes.ago).destroy_all
   end
 end

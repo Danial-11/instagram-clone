@@ -13,11 +13,11 @@ class PostPolicy < ApplicationPolicy
     true
   end
 
-  def view?(record, current_user)
+  def show?
     return true if record.user.account_type == 'public'
 
-    record.user.account_type == 'private' && record.user.follow_status(current_user) != 'pending' ||
-      record.user_id == current_user.id
+    record.user.account_type == 'private' && record.user.follow_status(user) != 'pending' ||
+      record.user_id == user.id
   end
 
   def edit?

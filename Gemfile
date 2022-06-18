@@ -41,6 +41,14 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
+group :development, :test do
+  gem 'rubocop'
+  gem 'rubocop-rspec'
+  gem 'rubocop-performance'
+  gem 'rubocop-rails'
+  gem 'rubocop-minitest' # or gem 'rubocop-rspec' depending on your test suite
+end
+
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'

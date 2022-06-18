@@ -2,6 +2,7 @@
 
 # controller
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!
   include Pundit::Authorization
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -12,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[username image bio])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[username image bio account_type])
   end
 
   private

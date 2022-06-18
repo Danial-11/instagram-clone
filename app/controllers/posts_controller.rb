@@ -3,7 +3,7 @@
 # post controller
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_post, only: %i[destroy edit update]
+  before_action :find_post, only: %i[show destroy edit update]
 
   def index
     @posts = Post.includes(:photos, :user, :likes).order('created_at desc').paginate(page: params[:page],
@@ -41,6 +41,8 @@ class PostsController < ApplicationController
       end
     end
   end
+
+  def show; end
 
   def destroy
     ActiveRecord::Base.transaction do

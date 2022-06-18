@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20_220_614_155_434) do
     t.index %w[following_id follower_id], name: 'index_follows_on_following_id_and_follower_id', unique: true
     t.index ['following_id'], name: 'index_follows_on_following_id'
   end
-
+``
   create_table 'likes', force: :cascade do |t|
     t.bigint 'user_id', null: false
     t.bigint 'post_id', null: false

@@ -9,7 +9,7 @@ class RequestsController < ApplicationController
 
   def edit
     @request.update!(status: 'accepted')
-  rescue ActiveRecord::RecordNotDestroyed => e
+  rescue ActiveRecord::RecordInvalid => e
     flash[:alert] = e.record.errors.full_messages
   else
     flash[:notice] = 'Request Accepted!'

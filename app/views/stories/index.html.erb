@@ -5,10 +5,10 @@
         Create story
       </div>
       <div class="card-body">
-        <%= render 'create_story' %>
+        <%= render 'create_story', story: @story %>
       </div>
     </div>
     <br>
-    <%= render 'story_body' %>
+    <%= render 'story_body', stories: @stories  %>
   </div>
 </div>

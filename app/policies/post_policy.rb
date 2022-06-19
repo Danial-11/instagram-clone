@@ -9,10 +9,6 @@ class PostPolicy < ApplicationPolicy
     # end
   end
 
-  def index?
-    true
-  end
-
   def show?
     return true if record.user.account_type == 'public'
 

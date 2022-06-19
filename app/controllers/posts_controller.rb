@@ -12,13 +12,13 @@ class PostsController < ApplicationController
   end
 
   def create
+    @post = current_user.posts.build(post_params)
     ActiveRecord::Base.transaction do
-      @post = current_user.posts.build(post_params)
       if @post.save!
         image = params[:images]
         if image.present?
           image.each do |img|
-            @post.photos.create(image: img)
+            @post.photos.create!(image: img)
           end
         end
         redirect_to posts_path
@@ -60,7 +60,7 @@ class PostsController < ApplicationController
   private
 
   def find_post
-    @post = Post.find_by id: params[:id]
+    @post = Post.find_by(id: params[:id])
     authorize @post
     return if @post
 

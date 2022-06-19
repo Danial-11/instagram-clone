@@ -6,7 +6,6 @@ class UsersController < ApplicationController
 
   def index
     @user_posts = current_user.posts
-    @users = User.includes(:posts)
   end
 
   def search

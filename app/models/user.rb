@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# rubocop required comment
 class User < ApplicationRecord
   include Followable
   has_many :posts, dependent: :destroy

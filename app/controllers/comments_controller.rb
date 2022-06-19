@@ -3,7 +3,7 @@
 # comments controller
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  skip_before_action :verify_authenticity_token
+  before_action :set_comment, only: %i[edit update destroy]
 
   def index
     @comments = @post.comments.includes(:user)
@@ -21,12 +21,9 @@ class CommentsController < ApplicationController
     end
   end
 
-  def edit
-    @comment = Comment.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @comment = Comment.find(params[:id])
     ActiveRecord::Base.transaction do
       if @comment.update(comment_params)
         redirect_to posts_path
@@ -38,9 +35,7 @@ class CommentsController < ApplicationController
 
   def destroy
     ActiveRecord::Base.transaction do
-      @comment = Comment.find(params[:id])
       authorize @comment
-      @post = @comment.post
       if @comment.destroy
         respond_to :js
       else
@@ -50,6 +45,11 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def set_comment
+    @comment = Comment.find(params[:id])
+    @post = @comment.post
+  end
 
   def comment_params
     params.require(:comment).permit(:user_id, :post_id, :content)

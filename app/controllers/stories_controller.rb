@@ -7,20 +7,21 @@ class StoriesController < ApplicationController
 
   def index
     @stories = Story.all.limit(1000).includes(:photos, :user)
-    @user_stories = current_user.stories
     @story = Story.new
   end
 
   def create
     @story = current_user.stories.create(story_params)
     image = params[:images]
-    if @story.save
-      image.each do |img|
-        @story.photos.create(image: img)
+    ActiveRecord::Base.transaction do
+      if @story.save
+        image.each do |img|
+          @story.photos.create(image: img)
+        end
+        flash[:notice] = 'Story Created'
+      else
+        flash[:alert] = 'Something went wrong!'
       end
-      flash[:notice] = 'Story Created'
-    else
-      flash[:alert] = 'Something went wrong!'
     end
     redirect_to stories_path
   end

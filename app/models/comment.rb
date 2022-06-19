@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# rubocop required comment
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :post

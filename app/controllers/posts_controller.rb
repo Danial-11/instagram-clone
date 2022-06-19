@@ -12,8 +12,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(post_params)
     ActiveRecord::Base.transaction do
+      @post = current_user.posts.build(post_params)
       if @post.save!
         image = params[:images]
         if image.present?

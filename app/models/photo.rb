@@ -6,8 +6,9 @@ class Photo < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   LIMIT = 10
-  validate(&:validate_max_photo)
-
+  validate do |record|
+    record.validate_max_photo
+  end
   def validate_max_photo
     return unless imageable
 

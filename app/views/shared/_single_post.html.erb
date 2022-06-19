@@ -46,9 +46,9 @@
         <div class="actions" id="like-button-<%= post.id.to_s %>">
           <% @like = current_user.likes.find_by(post_id: post.id) %>
           <% if @like.present? %>
-            <%= link_to image_tag("like_on.png", height: "30px"), like_path(id: @like.id), method: :delete, remote: true, class: "btn", style: "margin-left: -5px" %>
+            <%= link_to image_tag("like_on.jpg", height: "30px"), like_path(id: @like.id), method: :delete, remote: true, class: "btn", style: "margin-left: -5px" %>
           <% else %>
-            <%= link_to image_tag("like.png", height: "30px"), post_likes_path(post_id: post.id), method: :post, remote: true, class: " btn", style: "margin-left: -5px" %>
+            <%= link_to image_tag("like.jpg", height: "30px"), post_likes_path(post_id: post.id), method: :post, remote: true, class: " btn", style: "margin-left: -5px" %>
           <% end %>
         </div>
         <div class="mx-3">

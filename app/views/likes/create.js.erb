@@ -1,1 +1,1 @@
-$('#like-button-<%= @post.id.to_s %>').html('<%= link_to image_tag("like_on.png", height: "30px"), like_path(id: @like.id), method: :delete, remote: true, class: "btn", style: "margin-left: -5px" %>');
+$('#like-button-<%= @post.id.to_s %>').html('<%= link_to image_tag("like_on.jpg", height: "30px"), like_path(id: @like.id), method: :delete, remote: true, class: "btn", style: "margin-left: -5px" %>');

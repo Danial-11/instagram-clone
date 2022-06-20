@@ -6,11 +6,12 @@
       <% end %>
     </div>
     <br>
-    <p class= "mx-2" ><%= story.caption %></p>
-    <% if story.user == current_user %>
-      <%= button_to story_path(story), method: :delete, class: "ml-auto mx-0 my-auto pull-right" do %>
-        <i class = "far fa-trash-alt" aria-hidden = "true"></i>
-      <% end %>
+    <p class= "mx-2" ><%= story.caption %>
+      <% if story.user == current_user %>
+        <%= link_to story_path(story), method: :delete, class: "ml-auto mx-0 my-auto pull-right" do %>
+          <i class = "far fa-trash-alt pull-right mx-2" aria-hidden = "true"></i>
+        <% end %>
+      </p>
     <% end %>
     <% story.photos.each do |photo| %>
       <div class="text-center mb-3">

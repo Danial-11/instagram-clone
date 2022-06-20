@@ -11,6 +11,11 @@ AllCops:
     - "node_modules/*/"
     - "vendor/bundle/*/"
     - "bin/*/"
+    - "config/*/"
+    - "config/environments/*"
+    - "app/controllers/users/*"
+    - "app/models/*"
+    - "app/models/concerns/*"
 
 Layout/LineLength:
   Max: 140

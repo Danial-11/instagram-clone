@@ -12,7 +12,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :username, presence: true, length: { maximum: 20 }, uniqueness: true
+  validates :username, presence: true, length: { maximum: 20 }
   validates :email, presence: true, format: Devise.email_regexp, uniqueness: true
   validate :password_complexity
 

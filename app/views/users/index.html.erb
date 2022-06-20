@@ -23,9 +23,7 @@
   <% @user_posts.each do |post| %>
     <div class = "card">
       <div class = "card-header">
-        <%= link_to users_path(post.user), title: post.user.username do %>
-          <h4><%= post.user.username %></h4>
-        <% end %>
+        <h4><%= post.user.username %></h4>
       </div>
       <p class= "mx-2" ><%= post.content %></p>
       <%= link_to  posts_path do %>

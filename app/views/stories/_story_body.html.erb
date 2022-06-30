@@ -1,9 +1,7 @@
 <% stories.each do |story| %>
   <div class="card w-50 mb-5">
     <div class="card-header text-center">
-      <%= link_to users_path(story.user), title: story.user.username do %>
-        <h4><%= story.user.username %></h4>
-      <% end %>
+      <h4><%= story.user.username %></h4>
     </div>
     <br>
     <p class= "mx-2" ><%= story.caption %>

@@ -3,7 +3,7 @@
 # post controller
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_post, only: %i[show destroy edit update]
+  before_action :set_post, only: %i[show destroy edit update]
 
   def index
     @posts = Post.includes(:photos, :user, :likes).order('created_at desc').paginate(page: params[:page],
@@ -30,7 +30,9 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    authorize @post
+  end
 
   def update
     ActiveRecord::Base.transaction do
@@ -42,15 +44,23 @@ class PostsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    authorize @post
+  end
 
   def destroy
     ActiveRecord::Base.transaction do
       if @post.user == current_user
-        if @post.destroy
-          flash[:notice] = 'Post deleted'
-        else
-          flash[:alert] = 'Something went wrong ...'
+        begin
+          if @post.destroy
+            flash[:notice] = 'Post deleted'
+          else
+            flash[:alert] = 'Something went wrong ...'
+          end
+        rescue ActiveRecord::RecordNotDestroyed => e
+          render json: {
+            error: e.to_s
+          }, status: :not_found
         end
       end
     end
@@ -59,9 +69,8 @@ class PostsController < ApplicationController
 
   private
 
-  def find_post
+  def set_post
     @post = Post.find_by(id: params[:id])
-    authorize @post
     return if @post
 
     render 'post_not_found'

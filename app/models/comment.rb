@@ -12,7 +12,7 @@ class Comment < ApplicationRecord
 
   def action_comment
     ActionCable.server.broadcast 'comments_channel', {
-      html: ApplicationController.new.render_to_string(partial: 'shared/comment_material', locals: { comment: self }, formats: [:html])
+      html: ApplicationController.new.render_to_string(partial: 'shared/comment_material', locals: { comment: self })
     }
   end
 end

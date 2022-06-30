@@ -12,4 +12,8 @@ class CommentPolicy < ApplicationPolicy
   def destroy?
     user && user == record.user
   end
+
+  def edit?
+    user && user == record.user
+  end
 end

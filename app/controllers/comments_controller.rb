@@ -20,7 +20,9 @@ class CommentsController < ApplicationController
     flash[:notice] = 'Comment created'
   end
 
-  def edit; end
+  def edit
+    authorize @comment
+  end
 
   def update
     if @comment.update(comment_params)

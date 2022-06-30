@@ -8,6 +8,7 @@
     },
 
     received(data) {
-      document.getElementById('comment_body').append(data.html);
+      const comment_content = document.getElementById('comment_body');
+      comment_content.insertAdjacentHTML("beforebegin", data.html)
      }
   });

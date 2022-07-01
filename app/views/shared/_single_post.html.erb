@@ -57,7 +57,7 @@
           <span><%= post.content %></span>
         </div>
         <div class="light-color post-time mx-3 my-2"><%= time_ago_in_words(post.created_at) %> ago with post id <%= post.id %></div>
-        <div id="comment-form-post-<%= post.id.to_s %>">
+        <div id="comment-form-post-<%= post.id %>">
           <%= render 'shared/comment_list', {post: post} %>
         </div>
         <div class="row actions mx-1" id="comment-form-post-<%= post.id.to_s %>">

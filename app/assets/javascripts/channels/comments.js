@@ -1,3 +1,4 @@
+
   App.cable.subscriptions.create({ channel: "CommentsChannel" }, {
     connected() {
       console.log('Connected to Comments Channel...')
@@ -8,7 +9,11 @@
     },
 
     received(data) {
-      const comment_content = document.getElementById('comment_body');
-      comment_content.insertAdjacentHTML("beforebegin", data.html)
-     }
+      if (data.action === "append"){
+        $(`#comment-form-post-${data.post_id}`).prepend(data.html)
+      }
+      else if (data.action === "delete"){
+        $(`#comment-body-${data.comment_id}`)[0].remove()
+      }
+    }
   });

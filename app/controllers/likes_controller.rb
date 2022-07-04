@@ -6,12 +6,18 @@ class LikesController < ApplicationController
   def create
     @like = current_user.likes.create(post_id: params[:post_id])
     @post = @like.post
-    respond_to :js
+  rescue ActiveRecord::RecordInvalid => e
+    flash[:alert] = e.record.errors.full_messages
+  else
+    flash[:notice] = 'Liked'
   end
 
   def destroy
     @like = current_user.likes.find_by(id: params[:id]).destroy
     @post = @like.post
-    respond_to :js
+  rescue ActiveRecord::RecordNotDestroyed => e
+    flash[:alert] = e.record.errors.full_messages
+  else
+    flash[:notice] = 'Unliked'
   end
 end

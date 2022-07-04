@@ -9,6 +9,7 @@ class Photo < ApplicationRecord
   validate do |record|
     record.validate_max_photo
   end
+
   def validate_max_photo
     return unless imageable
 

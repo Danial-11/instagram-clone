@@ -13,7 +13,6 @@ AllCops:
     - "bin/*/"
     - "config/*/"
     - "config/environments/*"
-    - "app/controllers/users/*"
     - "app/models/*"
     - "app/models/concerns/*"
 

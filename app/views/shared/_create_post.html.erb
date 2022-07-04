@@ -8,7 +8,7 @@
         <%= form_for @post, :html => {:multipart => true, :class => "p-0 border-0"} do |f| %>
           <div class="form-group row mt-2">
             <div class="col pl-0">
-              <%= f.text_field :content, class: "form-control border-1", placeholder: "Insert caption", required: true %>
+              <%= f.text_field :content, class: "form-control border-1", placeholder: "Insert caption", required: true, autocomplete: :off %>
             </div>
             <div>
               <%= file_field_tag "images[]", type: :file, multiple: true , required: true, class: "mt-2" %>

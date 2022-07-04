@@ -3,7 +3,7 @@
 # stories controller
 class StoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_story, only: %i[show destroy]
+  before_action :set_story, only: %i[show destroy]
 
   def index
     @stories = Story.all.limit(1000).includes(:photos, :user)
@@ -35,13 +35,17 @@ class StoriesController < ApplicationController
       else
         flash[:alert] = 'Something went wrong ...'
       end
+    rescue ActiveRecord::RecordNotDestroyed => e
+      render json: {
+        error: e.to_s
+      }, status: :not_found
     end
     redirect_to stories_path
   end
 
   private
 
-  def find_story
+  def set_story
     @story = Story.find(params[:id])
     authorize @story
     return if @story

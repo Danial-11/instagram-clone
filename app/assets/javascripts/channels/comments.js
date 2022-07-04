@@ -15,5 +15,8 @@
       else if (data.action === "delete"){
         $(`#comment-body-${data.comment_id}`)[0].remove()
       }
+      else if(data.action === "edit"){
+        $(`#comment-form-post-${data.post_id}`).replaceWith(data.html)
+      }
     }
   });

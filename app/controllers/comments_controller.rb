@@ -6,10 +6,6 @@ class CommentsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_comment, only: %i[edit update destroy]
 
-  def index
-    @comments = @post.comments.includes(:user)
-  end
-
   def create
     @comment = Comment.new(comment_params)
     @comment.save
@@ -45,7 +41,7 @@ end
 private
 
 def set_comment
-  @comment = Comment.find(params[:id])
+  @comment = Comment.find_by(id: params[:id])
   @post = @comment.post
 end
 

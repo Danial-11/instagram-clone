@@ -5,7 +5,7 @@
         Create Post
       </div>
       <div class="card-body">
-        <%= form_for @post, :html => {:multipart => true, :class => "p-0 border-0"} do |f| %>
+        <%= form_for post, :html => {:multipart => true, :class => "p-0 border-0"} do |f| %>
           <div class="form-group row mt-2">
             <div class="col pl-0">
               <%= f.text_field :content, class: "form-control border-1", placeholder: "Insert caption", required: true, autocomplete: :off %>

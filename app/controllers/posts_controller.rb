@@ -13,8 +13,8 @@ class PostsController < ApplicationController
 
   def create
     ActiveRecord::Base.transaction do
-      @post = current_user.posts.build(post_params)
-      if @post.save!
+      @post = current_user.posts.create!(post_params)
+      if @post
         image = params[:images]
         if image.present?
           image.each do |img|

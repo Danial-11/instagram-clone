@@ -13,7 +13,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :username, presence: true, length: { maximum: 20 }
-  validates :email, presence: true, format: Devise.email_regexp, uniqueness: true
+  validates :email, format: Devise.email_regexp, uniqueness: true, presence: true
   validate :password_complexity
 
   def password_complexity

@@ -9,6 +9,10 @@ class CommentPolicy < ApplicationPolicy
     # end
   end
 
+  def create?
+    user && user == record.user
+  end
+
   def destroy?
     user && user == record.user
   end

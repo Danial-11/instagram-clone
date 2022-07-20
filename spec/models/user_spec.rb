@@ -11,13 +11,21 @@ RSpec.describe User, type: :model do
   end
   describe 'check validations' do
     it { should validate_presence_of(:username) }
-    it { should validate_presence_of(:email) }
+    it { should validate_presence_of(:email) }  
   end
 
   describe 'password_complexity' do
     let(:user) { create(:user) }
     it 'passowrd test' do
       expect(user.password).to match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,70}$/)
+    end
+  end
+
+  describe 'follow_status' do
+    @user = User.new
+    it 'follow status' do
+      expect(@user).to receive(:follow_status)
+      @user.follow_status
     end
   end
 end

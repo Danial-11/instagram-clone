@@ -27,6 +27,8 @@ class PostsController < ApplicationController
         flash[:alert] = 'Something went wrong ...'
         redirect_to posts_path
       end
+    rescue ActiveRecord::RecordInvalid => e
+      flash[:alert] = e.record.errors.full_messages
     end
   end
 
@@ -73,7 +75,7 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     return if @post
 
-    render 'post_not_found'
+    render 'post_not_found', status: :not_found
   end
 
   def post_params

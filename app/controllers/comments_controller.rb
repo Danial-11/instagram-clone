@@ -3,13 +3,13 @@
 # comments controller
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  skip_before_action :verify_authenticity_token
   before_action :set_comment, only: %i[edit update destroy]
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.save
     @post = @comment.post
+    @comment.save!
+    authorize @comment
   rescue ActiveRecord::RecordInvalid => e
     flash[:alert] = e.record.errors.full_messages
   else

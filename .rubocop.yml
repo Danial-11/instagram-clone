@@ -1,0 +1,40 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 2.7
+  TargetRailsVersion: 5.2.8
+  Exclude:
+    - "db/schema.rb"
+    - "db/migrate/*"
+    - "node_modules/*/"
+    - "vendor/bundle/*/"
+    - "bin/*/"
+    - "config/*/"
+    - "config/environments/*"
+    - "app/models/*"
+    - "app/models/concerns/*"
+
+Layout/LineLength:
+  Max: 140
+
+Metrics/MethodLength:
+  Max: 23
+
+Metrics/BlockLength:
+  Exclude:
+    - config/*/
+    - spec/**/*
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/*/
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Metrics/AbcSize:
+  Max: 40

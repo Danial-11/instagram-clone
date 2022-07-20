@@ -1,0 +1,15 @@
+<% post.comments.each do |comment| %>
+  <div class="mt-2 comment-container">
+    <%= render 'shared/comment_material', comment: comment %>
+  </div>
+  <% if comment.user == current_user %>
+    <div id = "comment-delete-<% post.id.to_s %>">
+      <%= link_to comment_path(comment), method: :delete, remote: true do %>
+        <button>delete</button>
+      <% end %>
+      <%= link_to edit_comment_path(comment) do %>
+        <i class = "fas fa-edit" aria-hidden = "true"></i>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

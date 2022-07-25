@@ -3,7 +3,7 @@
 # stories controller
 class StoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_story, only: %i[show destroy]
+  before_action :set_story, only: %i[destroy]
 
   def index
     @stories = Story.all.limit(1000).includes(:photos, :user)
@@ -26,7 +26,9 @@ class StoriesController < ApplicationController
     redirect_to stories_path
   end
 
-  def show; end
+  def show
+    @stories = Story.all.limit(1000).includes(:photos, :user)
+  end
 
   def destroy
     ActiveRecord::Base.transaction do

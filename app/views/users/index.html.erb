@@ -19,6 +19,9 @@
   </div>
   <hr>
 </div>
+<% @followers.each do |f| %>
+  <h4><%= f.username %></h4>
+<% end %>
 <div>
   <% @user_posts.each do |post| %>
     <div class = "card">

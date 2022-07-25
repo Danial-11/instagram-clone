@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def index
     @user_posts = current_user.posts
+    @followers = current_user.followers
   end
 
   def search

@@ -16,12 +16,10 @@
     </div>
     <%= link_to 'Create Post', posts_path, class: "btn btn-success" %>
     <%= link_to 'Add to story', stories_path, class: "btn btn-success" %>
+    <%= link_to 'Followers', followers_path, class: "btn btn-success" %>
   </div>
   <hr>
 </div>
-<% @followers.each do |f| %>
-  <h4><%= f.username %></h4>
-<% end %>
 <div>
   <% @user_posts.each do |post| %>
     <div class = "card">

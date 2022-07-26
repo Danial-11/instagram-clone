@@ -3,10 +3,12 @@
 # User controller
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  
 
   def index
     @user_posts = current_user.posts
+  end
+
+  def followers
     @followers = current_user.followers
   end
 

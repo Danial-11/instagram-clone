@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   mount Sidekiq::Web => '/sidekiq'
   get '/search', to: 'users#search'
+  get 'followers', to: 'users#followers'
   resources :stories
   resources :requests
   root 'posts#index'

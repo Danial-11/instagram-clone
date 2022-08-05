@@ -8,10 +8,6 @@ class UsersController < ApplicationController
     @user_posts = current_user.posts
   end
 
-  def followers
-    @followers = current_user.followers
-  end
-
   def search
     @user_posts = current_user.posts
     @query = params[:query]

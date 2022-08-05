@@ -1,39 +1,38 @@
 # frozen_string_literal: true
 
 class Api::StoriesController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token
   before_action :set_story, only: %i[destroy]
-
   def index
-    @stories = Story.all.limit(1000).includes(:photos, :user)
+    @stories = Story.all
     @story = Story.new
-    render json: @stories
+    @photos = Photo.all
+    @stories_with_photos = [@stories, @photos]
+    render json: @stories_with_photos
   end
 
   def create
-    @story = current_user.stories.create(story_params)
-    image = params[:images]
-    ActiveRecord::Base.transaction do
-      if @story.save
-        image.each do |img|
-          @story.photos.create(image: img)
-        end
-        flash[:notice] = 'Story Created'
-      else
-        flash[:alert] = 'Something went wrong!'
-      end
-    end
+    @user = User.find(1)
+    @story = @user.stories.create(story_params)
+    @story.save
     render json: @story
   end
 
   def show
-    @stories = Story.all.limit(1000).includes(:photos, :user)
+    @stories = Story.limit(1000).includes(:photos, :user)
     render json: @stories
   end
 
   def destroy
     @story.destroy
     render json: { notice: 'Story was successfully removed.' }
+  end
+
+  def followers
+    user = User.find(13)
+    @followers = user.followers
+    render json: @followers
   end
 
   private
